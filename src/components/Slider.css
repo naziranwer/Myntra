@@ -1,0 +1,18 @@
+ Slider.css
+.slider {
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .slide {
+    width: 50%;
+    flex: 0 0 auto;
+    height: 400px; /* Set the desired height of the slider */
+    background-color: #be2383; /* Set a background color or use background images */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #333;
+  }
+   
