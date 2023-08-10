@@ -14,8 +14,11 @@ const SlidingImage = () => {
     autoplay: true,
     autoplaySpeed: 3000, // Adjust the autoplay speed (in milliseconds) as needed
     arrows: false,
+    onInit: () => {
+      console.log("carousel started");
+    },
   };
-
+  console.log("sliding image renders");
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Box zIndex={0} position="relative">

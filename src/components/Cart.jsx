@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./NavBar";
@@ -60,12 +60,23 @@ const Cart = () => {
   // State for the address and payment type
   const [address, setAddress] = useState("");
   const [paymentType, setPaymentType] = useState("Credit Card");
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
   const handleCompletePayment = () => {
     toast("Order has been placed successfully!", {
       type: "success",
     });
+    setOrderPlaced(true);
   };
+
+  useEffect(() => {
+    if (orderPlaced) {
+      const delay = 5000;
+      const timeout = setTimeout(() => {
+        navigate("/");
+      }, delay);
+    }
+  }, [orderPlaced, navigate]);
 
   const logout = () => {
     localStorage.removeItem("signUp");
@@ -74,9 +85,17 @@ const Cart = () => {
 
   return (
     <>
-      {/* <NavBar /> */}
-      <div className="cart">
-        <Typography variant="h2" sx={{ textAlign: "center" }}>
+      <NavBar />
+      <div
+        className="cart"
+        style={{
+          minHeight: "500px",
+          // display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h1" sx={{ textAlign: "center" }}>
           My Cart
         </Typography>
         <br />
@@ -85,12 +104,21 @@ const Cart = () => {
             variant="body1"
             sx={{ justifyContent: "center", textAlign: "center" }}
           >
-            Your cart is empty. Go to{" "}
+            <Typography variant="h4" sx={{ textAlign: "center" }}>
+              Hey,it feels so light!
+            </Typography>
+
+            <Typography variant="h9" sx={{ textAlign: "center" }}>
+              There is nothing in your bag.Let's add some items.
+            </Typography>
+            <br />
+            <br />
+
             <Button
               onClick={() => navigate("/")}
               style={{ backgroundColor: "#E4135c", color: "white" }}
             >
-              HOME
+              ADD ITEMS FROM LIST
             </Button>
           </Typography>
         ) : (
