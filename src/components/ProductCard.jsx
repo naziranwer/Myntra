@@ -37,8 +37,8 @@ const ProductCard = ({ products }) => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              marginBottom: "100px", // Adjust margin as needed
-              marginTop: "10px",
+              marginBottom: "50px", // Adjust margin as needed
+              // marginTop: "10px",
             }}
             onMouseEnter={() => handleMouseEnter(product.id)}
             onMouseLeave={handleMouseLeave}
@@ -63,8 +63,9 @@ const ProductCard = ({ products }) => {
                 src={product.image}
                 alt={product.title}
                 style={{
-                  width: "50%",
-                  maxHeight: "70%",
+                  width: "80%",
+                  // maxHeight: "60%",
+                  maxHeight: "150px",
                   objectFit: "contain",
                   flexGrow: 1,
                 }}
