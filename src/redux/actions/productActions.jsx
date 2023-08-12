@@ -5,7 +5,6 @@ import {
   FETCH_PRODUCTS_FAILURE,
 } from "./productActionTypes";
 
-// Action creators
 export const fetchProductsRequest = () => {
   return {
     type: FETCH_PRODUCTS_REQUEST,
