@@ -22,7 +22,7 @@ const SlidingImage = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Box zIndex={0} position="relative">
-        <div style={{ maxWidth: "1500px" }}>
+        <div style={{ maxWidth: "1200px" }}>
           <Slider {...settings}>
             <div>
               <img

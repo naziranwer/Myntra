@@ -39,6 +39,7 @@ const FilterOptions = () => {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedGender, setSelectedGender] = useState("all");
+  // const [NoOfRatings, setNumberOfratings] = useState([300, 1000]);
 
   // Function to handle price slider change
   const handlePriceChange = (event, newValue) => {
@@ -75,6 +76,10 @@ const FilterOptions = () => {
     setSelectedGender(event.target.value);
   };
 
+  // const handleNumberRatingsChange = (event, NoOfRatings) => {
+  //   setNumberOfratings(NoOfRatings);
+  // };
+
   console.log("all pro", AllProducts);
 
   const filteredProducts = AllProducts.filter((product) => {
@@ -96,6 +101,12 @@ const FilterOptions = () => {
     // Filter by gender preference
     if (selectedGender !== "all" && !product.category.includes(selectedGender))
       return false;
+
+    // if (
+    //   product.rating.count < NoOfRatings[0] ||
+    //   product.rating.count < NoOfRatings[1]
+    // )
+    //   return false;
 
     return true;
   });
@@ -132,6 +143,17 @@ const FilterOptions = () => {
                 step={0.1}
               />
             </Box>
+            {/* no. of rating slider */}
+            {/* <Box sx={{ mt: 2 }}>
+              <Typography gutterBottom> Number Ratings:</Typography>
+              <Slider
+                value={NoOfRatings}
+                onChange={handleNumberRatingsChange}
+                valueLabelDisplay="auto"
+                max={1000}
+                step={50}
+              />
+            </Box> */}
 
             {/* Clothing Type Checkboxes */}
             <Box sx={{ mt: 2 }}>
