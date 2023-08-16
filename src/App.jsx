@@ -6,7 +6,6 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import FilterOptions from "./components/FilterOptions";
-import ProductList from "./components/ProductList";
 
 import Cart from "./components/Cart";
 import Home from "./components/Home";
@@ -14,6 +13,7 @@ import { Login } from "./components/Login";
 import SlidingImage from "./components/Slider";
 
 import SignInSignupWithLocalStorage from "./components/SignInSignUp";
+import ProductPage from "./components/ProductDetail";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/nav" element={<NavBar />} />
         <Route path="/" element={<Home />} />
-        <Route path="/pro" element={<ProductList />} />
+        <Route path="/pro" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<SearchBar />} />
