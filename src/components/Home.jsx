@@ -13,6 +13,7 @@ import {
   fetchProductsFailure,
 } from "../redux/actions/productActions";
 import { useSelector, useDispatch } from "react-redux";
+import Shimmer from "./Shimmer";
 
 const Home = () => {
   const theme = useTheme();
@@ -47,18 +48,21 @@ const Home = () => {
 
       {!isMobile && <SlidingImage />}
       <br />
-
-      <Grid item xs={12} sm={8}>
-        <Box sx={{ p: 2 }}>
-          <Grid container spacing={2}>
-            {searchTerm === "" ? (
-              <ProductCard products={AllProducts} />
-            ) : (
-              <ProductCard products={searchedProducts} />
-            )}
-          </Grid>
-        </Box>
-      </Grid>
+      {AllProducts.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <Grid item xs={12} sm={8}>
+          <Box sx={{ p: 2 }}>
+            <Grid container spacing={2}>
+              {searchTerm === "" ? (
+                <ProductCard products={AllProducts} />
+              ) : (
+                <ProductCard products={searchedProducts} />
+              )}
+            </Grid>
+          </Box>
+        </Grid>
+      )}
       <br />
       <br />
       <br />
