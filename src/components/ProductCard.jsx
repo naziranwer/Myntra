@@ -3,10 +3,12 @@ import { Box, Typography, Grid, Paper, Button } from "@mui/material";
 import { ADD } from "../redux/actions/action";
 import { useDispatch } from "react-redux";
 import ProductRating from "./productRating";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ products }) => {
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Function to handle mouse enter on a product
   const handleMouseEnter = (productId) => {
@@ -21,6 +23,10 @@ const ProductCard = ({ products }) => {
   const add = (e) => {
     dispatch(ADD(e));
     console.log("item added to cart");
+  };
+  const handleProductClick = (product) => {
+    // Navigate to ProductPage and pass product as state
+    navigate("/pro", { state: { product } });
   };
   return (
     <Box sx={{ overflowY: "auto", maxHeight: "calc(100vh - 64px)" }}>
@@ -42,6 +48,7 @@ const ProductCard = ({ products }) => {
             }}
             onMouseEnter={() => handleMouseEnter(product.id)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleProductClick(product)}
           >
             <Paper
               elevation={hoveredProduct === product.id ? 8 : 4}
@@ -83,14 +90,14 @@ const ProductCard = ({ products }) => {
               <Typography variant="body1" sx={{ mb: 1 }}>
                 Rs. {product.price}
               </Typography>
-              <Button
+              {/* <Button
                 onClick={() => add(product)}
                 variant="contained"
                 color="primary"
                 style={{ backgroundColor: "#E4135c" }}
               >
                 Add to Cart
-              </Button>
+              </Button> */}
             </Paper>
           </Grid>
         ))}
