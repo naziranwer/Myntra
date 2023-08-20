@@ -1,6 +1,6 @@
 /* Slider.css */
 .slide-container {
-  width: 100vw; /* Set the width to 100% of the viewport width */
+  width: 100%; /* Set the width to 100% of the viewport width */
   overflow: hidden; /* Hide any overflow */
 }
 
@@ -8,14 +8,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 350px;
+  height: 400px;
   width: 100%; /* Set the width to 100% of the slide container */
   background-size: cover; /* Ensure the background image covers the entire slide */
   background-position: center; /* Center the background image */
 }
 
 .slide-container .each-slide span {
-  padding: 10px;
+  padding: 2px;
   background: #efefef;
   color: #000000;
 }

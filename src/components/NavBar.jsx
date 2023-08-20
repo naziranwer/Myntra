@@ -12,9 +12,9 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import ProfileIcon from "@mui/icons-material/AccountCircle";
-import WishlistIcon from "@mui/icons-material/Favorite";
-import CartIcon from "@mui/icons-material/ShoppingCart";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { useSelector } from "react-redux";
@@ -32,23 +32,23 @@ const NavBar = () => {
   const [showBigImageForStudio, setShowBigForStudio] = useState(false);
 
   // Function to determine the icon and text color based on the background color
-  const getIconAndTextColor = (backgroundColor) => {
-    const isDarkBackground = theme.palette.mode === "dark";
-    const iconColor = isDarkBackground ? theme.palette.text.primary : "#000000";
-    const textColor = isDarkBackground
-      ? theme.palette.text.primary
-      : theme.palette.text.secondary;
+  // const getIconAndTextColor = (backgroundColor) => {
+  //   const isDarkBackground = theme.palette.mode === "dark";
+  //   const "#36454F" = isDarkBackground ? theme.palette.text.primary : "#000000";
+  //   const "#36454F" = isDarkBackground
 
-    return {
-      iconColor,
-      textColor,
-    };
-  };
+  //     : theme.palette.text.secondary;
+
+  //   return {
+  //     "#36454F",
+  //     "#36454F",
+  //   };
+  // };
 
   // Get the icon and text color based on the background color
-  const { iconColor, textColor } = getIconAndTextColor(
-    theme.palette.primary.main
-  );
+  // const { "#36454F", "#36454F" } = getIconAndTextColor(
+  //   theme.palette.primary.main
+  // );
   const handleMouseEnterMen = () => {
     setShowBigImageForMen(true);
   };
@@ -92,15 +92,21 @@ const NavBar = () => {
     <AppBar
       position="static"
       color="primary"
-      sx={{ backgroundColor: "#f0f0f0", height: "70px" }}
+      sx={{ backgroundColor: "#ffffff", height: "80px", width: "100%" }}
     >
-      <Toolbar>
+      <Toolbar
+        style={{
+          display: "flex",
+          alignitems: "center",
+          justifycontent: "space-between",
+        }}
+      >
         {isMobile ? (
           <>
             <IconButton edge="start" color="inherit" aria-label="menu">
-              <MenuIcon style={{ color: iconColor }} />
+              <MenuIcon style={{ color: "#36454F" }} />
             </IconButton>
-            <Typography variant="h6" sx={{ flexGrow: 1, color: textColor }}>
+            <Typography variant="h6" sx={{ flexGrow: 1, color: "#36454F" }}>
               <img
                 src="https://tse3.explicit.bing.net/th?id=OIP.QWUAETWj7eqbEhMAqdNl2gHaFW&pid=Api&P=0&h=180"
                 alt="Logo"
@@ -109,10 +115,12 @@ const NavBar = () => {
               />
             </Typography>
             <IconButton color="inherit">
-              <SearchIcon style={{ color: iconColor }} />
+              <SearchIcon style={{ color: "#36454F" }} />
             </IconButton>
             <IconButton color="inherit" onClick={() => navigate("/cart")}>
-              <CartIcon style={{ color: iconColor, marginRight: "8px" }} />
+              <ShoppingBagOutlinedIcon
+                style={{ color: "#36454F", marginRight: "8px" }}
+              />
               {cartItems.length > 0 && (
                 <span
                   style={{
@@ -135,12 +143,17 @@ const NavBar = () => {
           <>
             <Typography
               variant="h6"
-              sx={{ flexGrow: 1, color: textColor, marginRight: "auto" }}
+              sx={{
+                flexGrow: 1,
+                color: "#36454F",
+                marginLeft: "20px",
+                marginTop: "14px",
+              }}
             >
               <img
                 src="https://tse3.explicit.bing.net/th?id=OIP.QWUAETWj7eqbEhMAqdNl2gHaFW&pid=Api&P=0&h=180"
                 alt="Logo"
-                style={{ height: 40, cursor: "pointer" }}
+                style={{ height: 50, cursor: "pointer" }}
                 onClick={() => navigate("/")}
               />
             </Typography>
@@ -148,7 +161,10 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 style={{
-                  color: textColor,
+                  color: "#36454F",
+                  // marginLeft: "20px",
+                  marginRight: "8px",
+                  marginTop: "14px",
                   fontWeight: "bold",
                 }}
                 onMouseEnter={handleMouseEnterMen}
@@ -160,8 +176,9 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 style={{
-                  color: textColor,
+                  color: "#36454F",
                   marginRight: "8px",
+                  marginTop: "14px",
                   fontWeight: "bold",
                 }}
                 onMouseEnter={handleMouseEnterWomen}
@@ -173,8 +190,9 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 style={{
-                  color: textColor,
+                  color: "#36454F",
                   marginRight: "8px",
+                  marginTop: "14px",
                   fontWeight: "bold",
                 }}
                 onMouseEnter={handleMouseEnterKids}
@@ -186,8 +204,9 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 style={{
-                  color: textColor,
+                  color: "#36454F",
                   marginRight: "8px",
+                  marginTop: "14px",
                   fontWeight: "bold",
                 }}
                 onMouseEnter={handleMouseEnterHome}
@@ -199,8 +218,9 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 style={{
-                  color: textColor,
+                  color: "#36454F",
                   marginRight: "8px",
+                  marginTop: "14px",
                   fontWeight: "bold",
                 }}
                 onMouseEnter={handleMouseEnterBeauty}
@@ -212,8 +232,9 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 style={{
-                  color: textColor,
-                  marginRight: "250px",
+                  color: "#36454F",
+                  marginRight: "100px",
+                  marginTop: "14px",
                   fontWeight: "bold",
                 }}
                 onMouseEnter={handleMouseEnterStudio}
@@ -225,9 +246,9 @@ const NavBar = () => {
                   style={{
                     position: "absolute",
                     top: "3px",
-                    right: "-17px",
+                    right: "-22px",
 
-                    color: "red",
+                    color: "#EA1E6C",
 
                     padding: "4px",
                     fontSize: "8px",
@@ -238,7 +259,7 @@ const NavBar = () => {
               </Button>
 
               {/* Add the SearchBar component here */}
-              <div style={{ marginRight: "25px" }}>
+              <div style={{ marginRight: "30px", marginTop: "14px" }}>
                 <SearchBar />
               </div>
               {/* <CheckSearchBar /> */}
@@ -246,21 +267,54 @@ const NavBar = () => {
               <div style={{ flexGrow: 1 }} />
 
               <IconButton color="inherit">
-                <ProfileIcon
+                <PersonOutlineOutlinedIcon
                   style={{
-                    color: iconColor,
+                    color: "#36454F",
                     marginRight: "8px",
                     marginLeft: "8px",
                   }}
                 />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "30px",
+                    right: "8px",
+
+                    color: "#36454F",
+
+                    padding: "4px",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Profile
+                </span>
               </IconButton>
+
               <IconButton color="inherit">
-                <WishlistIcon
-                  style={{ color: iconColor, marginRight: "8px" }}
+                <FavoriteBorderOutlinedIcon
+                  style={{ color: "#36454F", marginRight: "8px" }}
                 />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "30px",
+                    right: "3px",
+
+                    color: "#36454F",
+
+                    padding: "4px",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Wishlist
+                </span>
               </IconButton>
               <IconButton color="inherit" onClick={() => navigate("/cart")}>
-                <CartIcon style={{ color: iconColor, marginRight: "8px" }} />
+                <ShoppingBagOutlinedIcon
+                  style={{ color: "#36454F", marginRight: "8px" }}
+                />
                 {cartItems.length > 0 && (
                   <span
                     style={{
@@ -277,6 +331,19 @@ const NavBar = () => {
                     {cartItems.length}
                   </span>
                 )}
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "30px",
+                    right: "14px",
+                    color: "#36454F",
+                    padding: "4px",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Bag
+                </span>
               </IconButton>
             </div>
           </>
