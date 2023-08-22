@@ -24,69 +24,97 @@ const NavBar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cartreducer.carts);
-  const [showBigImageForMen, setShowBigImageForMen] = useState(false);
-  const [showBigImageForWomen, setShowBigForWomen] = useState(false);
-  const [showBigImageForKids, setShowBigForKids] = useState(false);
-  const [showBigImageForHome, setShowBigForHome] = useState(false);
-  const [showBigImageForBeauty, setShowBigForBeauty] = useState(false);
-  const [showBigImageForStudio, setShowBigForStudio] = useState(false);
 
-  // Function to determine the icon and text color based on the background color
-  // const getIconAndTextColor = (backgroundColor) => {
-  //   const isDarkBackground = theme.palette.mode === "dark";
-  //   const "#36454F" = isDarkBackground ? theme.palette.text.primary : "#000000";
-  //   const "#36454F" = isDarkBackground
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-  //     : theme.palette.text.secondary;
-
-  //   return {
-  //     "#36454F",
-  //     "#36454F",
-  //   };
-  // };
-
-  // Get the icon and text color based on the background color
-  // const { "#36454F", "#36454F" } = getIconAndTextColor(
-  //   theme.palette.primary.main
-  // );
-  const handleMouseEnterMen = () => {
-    setShowBigImageForMen(true);
-  };
-  const handleMouseEnterWomen = () => {
-    setShowBigForWomen(true);
-  };
-  const handleMouseEnterKids = () => {
-    setShowBigForKids(true);
-  };
-  const handleMouseEnterHome = () => {
-    setShowBigForHome(true);
-  };
-  const handleMouseEnterBeauty = () => {
-    setShowBigForBeauty(true);
-  };
-  const handleMouseEnterStudio = () => {
-    setShowBigForStudio(true);
+  const handleMouseEnter = () => {
+    setIsDropdownVisible(true);
   };
 
-  // Function to handle mouse leave from the buttons
-  const handleMouseLeaveMen = () => {
-    setShowBigImageForMen(false);
+  const handleMouseLeave = () => {
+    setIsDropdownVisible(false);
   };
-  const handleMouseLeaveWomen = () => {
-    setShowBigForWomen(false);
+
+  const handleDropdownMouseEnter = () => {
+    setIsDropdownVisible(true);
   };
-  const handleMouseLeaveKids = () => {
-    setShowBigForKids(false);
+
+  const handleDropdownMouseLeave = () => {
+    setIsDropdownVisible(false);
   };
-  const handleMouseLeaveHome = () => {
-    setShowBigForHome(false);
-  };
-  const handleMouseLeaveBeauty = () => {
-    setShowBigForBeauty(false);
-  };
-  const handleMouseLeaveStudio = () => {
-    setShowBigForStudio(false);
-  };
+
+  console.log("drop down status", isDropdownVisible);
+
+  const menuItems = [
+    "Topwear",
+    "T-Shirts",
+    "Casual Shirts",
+    "Formal Shirts",
+    "Sweatshirts",
+    "Sweaters",
+    "Jackets",
+    "Blazers & Coats",
+    "Suits",
+    "Rain Jackets",
+    "Indian & Festive Wear",
+    "Kurtas & Kurta Sets",
+    "Sherwanis",
+    "Nehru Jackets",
+    "Dhotis",
+    "Bottomwear",
+    "Jeans",
+    "Casual Trousers",
+    "Formal Trousers",
+    "Shorts",
+    "Track Pants & Joggers",
+    "Innerwear & Sleepwear",
+    "Briefs & Trunks",
+    "Boxers",
+    "Vests",
+    "Sleepwear & Loungewear",
+    "Thermals",
+    "Plus Size",
+    "Footwear",
+    "Casual Shoes",
+    "Sports Shoes",
+    "Formal Shoes",
+    "Sneakers",
+    "Sandals & Floaters",
+    "Flip Flops",
+    "Socks",
+    "Personal Care & Grooming",
+    "Sunglasses & Frames",
+    "Watches",
+    "Sports & Active Wear",
+    "Sports Shoes",
+    "Sports Sandals",
+
+    "Track Pants & Shorts",
+
+    "Jackets & Sweatshirts",
+    "Sports Accessories",
+    "Swimwear",
+
+    "Smart Wearables",
+
+    "Headphones",
+    "Speakers",
+    "Fashion Accessories",
+    "Wallets",
+
+    "Perfumes & Body Mists",
+
+    "Deodorants",
+    "Ties, Cufflinks & Pocket Squares",
+    "Accessory Gift Sets",
+    "Caps & Hats",
+    "Mufflers, Scarves & Gloves",
+    "Phone Cases",
+    "Rings & Wristwear",
+
+    "Bags & Backpacks",
+    "Luggages & Trolleys",
+  ];
 
   return (
     <AppBar
@@ -158,105 +186,118 @@ const NavBar = () => {
               />
             </Typography>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <Button
-                color="inherit"
-                style={{
-                  color: "#36454F",
-                  // marginLeft: "20px",
-                  marginRight: "8px",
-                  marginTop: "14px",
-                  fontWeight: "bold",
-                }}
-                onMouseEnter={handleMouseEnterMen}
-                onMouseLeave={handleMouseLeaveMen}
-                onClick={() => navigate("/filter")}
+              <div
+                style={{ position: "relative" }}
+                // onMouseEnter={handleMouseEnter}
+                // onMouseLeave={handleMouseLeave}
+                // onClick={() => navigate("/filter")}
               >
-                Men
-              </Button>
-              <Button
-                color="inherit"
-                style={{
-                  color: "#36454F",
-                  marginRight: "8px",
-                  marginTop: "14px",
-                  fontWeight: "bold",
-                }}
-                onMouseEnter={handleMouseEnterWomen}
-                onMouseLeave={handleMouseLeaveWomen}
-                onClick={() => navigate("/filter")}
-              >
-                Women
-              </Button>
-              <Button
-                color="inherit"
-                style={{
-                  color: "#36454F",
-                  marginRight: "8px",
-                  marginTop: "14px",
-                  fontWeight: "bold",
-                }}
-                onMouseEnter={handleMouseEnterKids}
-                onMouseLeave={handleMouseLeaveKids}
-                onClick={() => navigate("/filter")}
-              >
-                Kids
-              </Button>
-              <Button
-                color="inherit"
-                style={{
-                  color: "#36454F",
-                  marginRight: "8px",
-                  marginTop: "14px",
-                  fontWeight: "bold",
-                }}
-                onMouseEnter={handleMouseEnterHome}
-                onMouseLeave={handleMouseLeaveHome}
-                onClick={() => navigate("/filter")}
-              >
-                Home & Living
-              </Button>
-              <Button
-                color="inherit"
-                style={{
-                  color: "#36454F",
-                  marginRight: "8px",
-                  marginTop: "14px",
-                  fontWeight: "bold",
-                }}
-                onMouseEnter={handleMouseEnterBeauty}
-                onMouseLeave={handleMouseLeaveBeauty}
-                onClick={() => navigate("/filter")}
-              >
-                Beauty
-              </Button>
-              <Button
-                color="inherit"
-                style={{
-                  color: "#36454F",
-                  marginRight: "100px",
-                  marginTop: "14px",
-                  fontWeight: "bold",
-                }}
-                onMouseEnter={handleMouseEnterStudio}
-                onMouseLeave={handleMouseLeaveStudio}
-                onClick={() => navigate("/filter")}
-              >
-                Studio
-                <span
+                <Button
+                  color="inherit"
                   style={{
-                    position: "absolute",
-                    top: "3px",
-                    right: "-22px",
-
-                    color: "#EA1E6C",
-
-                    padding: "4px",
-                    fontSize: "8px",
+                    color: "#36454F",
+                    // marginLeft: "20px",
+                    marginRight: "8px",
+                    marginTop: "14px",
+                    fontWeight: "bold",
+                    padding: "20px 0",
                   }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => navigate("/filter")}
                 >
-                  NEW
-                </span>
-              </Button>
+                  Men
+                </Button>
+                <Button
+                  color="inherit"
+                  style={{
+                    color: "#36454F",
+                    marginRight: "8px",
+                    marginTop: "14px",
+                    fontWeight: "bold",
+                    padding: "20px 0",
+                  }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => navigate("/filter")}
+                >
+                  Women
+                </Button>
+                <Button
+                  color="inherit"
+                  style={{
+                    color: "#36454F",
+                    marginRight: "8px",
+                    marginTop: "14px",
+                    fontWeight: "bold",
+                    padding: "20px 0",
+                  }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => navigate("/filter")}
+                >
+                  Kids
+                </Button>
+                <Button
+                  color="inherit"
+                  style={{
+                    color: "#36454F",
+                    marginRight: "12px",
+                    marginTop: "14px",
+                    fontWeight: "bold",
+                    padding: "20px 0",
+                  }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => navigate("/filter")}
+                >
+                  Home & Living
+                </Button>
+                <Button
+                  color="inherit"
+                  style={{
+                    color: "#36454F",
+                    marginRight: "8px",
+                    marginTop: "14px",
+                    fontWeight: "bold",
+                    padding: "20px 0",
+                  }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => navigate("/filter")}
+                >
+                  Beauty
+                </Button>
+                <Button
+                  color="inherit"
+                  style={{
+                    color: "#36454F",
+                    marginRight: "100px",
+                    marginTop: "14px",
+                    fontWeight: "bold",
+                    padding: "20px 0",
+                  }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => navigate("/filter")}
+                >
+                  Studio
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "3px",
+                      right: "-22px",
+
+                      color: "#EA1E6C",
+
+                      padding: "4px",
+                      fontSize: "8px",
+                    }}
+                  >
+                    NEW
+                  </span>
+                </Button>
+              </div>
 
               {/* Add the SearchBar component here */}
               <div style={{ marginRight: "30px", marginTop: "14px" }}>
@@ -349,101 +390,75 @@ const NavBar = () => {
           </>
         )}
       </Toolbar>
-      <Box zIndex={1} position="relative">
-        {showBigImageForMen && (
+      <Box>
+        {isDropdownVisible && (
           <div
+            onMouseEnter={handleDropdownMouseEnter}
+            onMouseLeave={handleDropdownMouseLeave}
             style={{
               position: "absolute",
-              top: "10px",
-              left: "50%",
-              transform: "translateX(-50%)",
+              top: "13%",
+              left: "10%",
+              width: "80%",
+              height: "70%",
+              backgroundColor: "white",
+              border: "1px solid #ccc",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              zIndex: 1,
+              padding: "10px",
+              display: "flex",
+              flexWrap: "wrap",
+              background:
+                "linear-gradient(90deg, white 0%, #FDFBFC 0%, #FDFBFC 20%, white 20%, white 40%, #FDFBFC 40%, #FDFBFC 60%, white 60%, white 80%, #FDFBFC 80%, #FDFBFC 100%)",
             }}
           >
-            <img
-              src="../../images/men.png"
-              alt="Big Image"
-              style={{ width: "1200px", height: "400px" }}
-            />
-          </div>
-        )}
-        {showBigImageForWomen && (
-          <div
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-          >
-            <img
-              src="../../images/women.png"
-              alt="Big Image"
-              style={{ width: "1200px", height: "400px" }}
-            />
-          </div>
-        )}
-        {showBigImageForKids && (
-          <div
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-          >
-            <img
-              src="../../images/kids.png"
-              alt="Big Image"
-              style={{ width: "1200px", height: "400px" }}
-            />
-          </div>
-        )}
-        {showBigImageForHome && (
-          <div
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-          >
-            <img
-              src="../../images/home.png"
-              alt="Big Image"
-              style={{ width: "1200px", height: "400px" }}
-            />
-          </div>
-        )}
-        {showBigImageForBeauty && (
-          <div
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-          >
-            <img
-              src="../../images/women.png"
-              alt="Big Image"
-              style={{ width: "1200px", height: "400px" }}
-            />
-          </div>
-        )}
-        {showBigImageForStudio && (
-          <div
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-          >
-            <img
-              src="../../images/studio.png"
-              alt="Big Image"
-              style={{ width: "500px", height: "400px" }}
-            />
+            {/* Render menu items */}
+            {menuItems.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  // flex: 1,
+                  width: "20%", // Adjust based on your preference
+                  marginBottom: "1px",
+                  padding: "1px",
+                  boxSizing: "border-box",
+
+                  color:
+                    index < 5 || index % 12 === 0 || index % 6 === 0
+                      ? "#DD062F"
+                      : "#36454F",
+                  // backgroundColor: index % 2 === 0 ? "#F2F2F2" : "white",
+                  transition: "font-weight 0.1s",
+                }}
+                onClick={() => navigate("/filter")}
+                onMouseEnter={(e) => {
+                  e.target.style.fontWeight = "bold"; // Increase font size on hover
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.fontWeight = "normal"; // Reset font size when not hovering
+                }}
+              >
+                <div
+                  style={{
+                    // backgroundColor: "#F2F2F2",
+                    borderRadius: "8px",
+                    padding: "1px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    style={{
+                      fontSize: index < 5 ? "18px" : "12px",
+                      fontWeight: index < 5 ? "bold" : "normal",
+                      // color: "#36454F",
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </Box>

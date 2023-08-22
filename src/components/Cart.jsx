@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "./NavBar";
 import { DLT, ADD, REMOVE } from "../redux/actions/action";
 
 import {
@@ -14,6 +13,7 @@ import {
   TextField,
   Modal,
   MenuItem,
+  Container,
 } from "@mui/material";
 import {
   Delete as DeleteIcon,
@@ -23,6 +23,7 @@ import {
 import Footer from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CartNavbar from "./CartNavbar";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartreducer.carts);
@@ -71,60 +72,68 @@ const Cart = () => {
 
   useEffect(() => {
     if (orderPlaced) {
-      const delay = 5000;
+      const delay = 3000;
       const timeout = setTimeout(() => {
         navigate("/");
       }, delay);
     }
   }, [orderPlaced, navigate]);
-
-  const logout = () => {
-    localStorage.removeItem("signUp");
-    window.location.reload();
-  };
-
   return (
     <>
-      <NavBar />
-      <div
-        className="cart"
-        style={{
-          minHeight: "500px",
-          // display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Typography variant="h1" sx={{ textAlign: "center" }}>
+      <CartNavbar />
+      <br />
+      <br />
+      <div className="cart">
+        {/* <Typography variant="h2" sx={{ textAlign: "center" }}>
           My Cart
-        </Typography>
-        <br />
+        </Typography> */}
         {cartItems.length === 0 ? (
-          <Typography
-            variant="body1"
-            sx={{ justifyContent: "center", textAlign: "center" }}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "80%", // This will make the div take the full viewport height
+              margin: "80px 0",
+            }}
           >
-            <Typography variant="h4" sx={{ textAlign: "center" }}>
-              Hey,it feels so light!
-            </Typography>
+            <img
+              src="https://constant.myntassets.com/checkout/assets/img/empty-bag.png"
+              alt="image"
+              style={{ height: "200px" }}
+            />
 
-            <Typography variant="h9" sx={{ textAlign: "center" }}>
-              There is nothing in your bag.Let's add some items.
-            </Typography>
-            <br />
-            <br />
-
-            <Button
-              onClick={() => navigate("/")}
-              style={{ backgroundColor: "#E4135c", color: "white" }}
+            <Typography
+              variant="body1"
+              sx={{ justifyContent: "center", textAlign: "center" }}
             >
-              ADD ITEMS FROM LIST
-            </Button>
-          </Typography>
+              <h3 style={{ color: "#424553", marginTop: "10px" }}>
+                Hey,it feels so light!
+              </h3>
+              <p style={{ color: "lightgrey", marginTop: "10px" }}>
+                There is nothing in your bag.Let's add some items.
+              </p>
+              <Button
+                variant="outlined"
+                onClick={() => navigate("/")}
+                style={{
+                  backgroundColor: "E4135c",
+                  border: " 1px solid rgb(255, 63, 108)",
+                  color: "rgb(255, 63, 108)",
+                  borderRadius: "1px",
+                  height: "50px",
+                  fontWeight: "bold",
+                }}
+              >
+                ADD ITEMS FROM WISHLIST
+              </Button>
+            </Typography>
+          </div>
         ) : (
-          <Box sx={{ display: "flex" }}>
+          <Container sx={{ display: "flex" }}>
             {/* Left Column: Cart Items */}
-            <Box sx={{ flex: 1, marginRight: 3, marginLeft: 5 }}>
+            <Box sx={{ flex: 1, marginRight: 3, marginLeft: 1 }}>
               <Grid container spacing={2}>
                 {cartItems.map((item, index) => (
                   <Grid
@@ -219,30 +228,14 @@ const Cart = () => {
                     </Paper>
                   </Grid>
                 ))}
-                {Array.from({ length: 5 - (cartItems.length % 5) }).map(
-                  (_, index) => (
-                    <Grid
-                      item
-                      xs={12}
-                      sm={6}
-                      md={4}
-                      key={`empty-${index}`}
-                      sx={{
-                        marginBottom: "10px",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <div style={{ width: "100%", height: 1 }} />
-                    </Grid>
-                  )
-                )}
               </Grid>
             </Box>
             {/* Right Column: Checkout Box */}
             <Box sx={{ flex: 1, marginLeft: 5, marginRight: 5 }}>
-              <Paper elevation={3} sx={{ p: 2 }}>
-                <Typography variant="h6">Checkout Summary</Typography>
+              <Paper elevation={0} sx={{ p: 2 }}>
+                <Typography variant="h6">
+                  PRICE DETAILS ({cartItems.length} item)
+                </Typography>
                 <Box
                   sx={{
                     display: "flex",
@@ -251,9 +244,9 @@ const Cart = () => {
                     mt: 2,
                   }}
                 >
-                  <Typography variant="body1">Total MRP:</Typography>
+                  <Typography variant="body1">Total MRP</Typography>
                   <Typography variant="body1">
-                    Rs: {calculateTotalMRP()}
+                    {`\u20B9`} {calculateTotalMRP()}
                   </Typography>
                 </Box>
                 <Box
@@ -264,9 +257,9 @@ const Cart = () => {
                     mt: 1,
                   }}
                 >
-                  <Typography variant="body1">Delivery Charges:</Typography>
-                  <Typography variant="body1">
-                    {isFreeDelivery() ? "Free" : "Rs: 50"}{" "}
+                  <Typography variant="body1">Delivery Charges</Typography>
+                  <Typography variant="body1" style={{ color: "#03a685" }}>
+                    {isFreeDelivery() ? "Free" : "\u20B9 50"}{" "}
                     {/* Adjust the delivery charge value */}
                   </Typography>
                 </Box>
@@ -278,9 +271,49 @@ const Cart = () => {
                     mt: 1,
                   }}
                 >
-                  <Typography variant="body1">Total Amount:</Typography>
+                  <Typography variant="body1">Coupon Discount</Typography>
+                  <Typography variant="body1" style={{ color: "#ff3f6c" }}>
+                    Apply Coupon
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mt: 1,
+                  }}
+                >
                   <Typography variant="body1">
-                    Rs:{" "}
+                    Convenience Fee{" "}
+                    <span
+                      style={{
+                        marginLeft: "5px",
+                        fontWeight: "bold",
+                        color: "rgb(255, 63, 108)",
+                      }}
+                    >
+                      Know More
+                    </span>
+                  </Typography>
+                  <Typography variant="body1">
+                    {" "}
+                    <del>&#8377;{`\u20B9`}30</del>{" "}
+                    <span style={{ color: "#03a685" }}>FREE</span>
+                  </Typography>
+                </Box>
+                <br />
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mt: 1,
+                  }}
+                >
+                  <Typography variant="h4">Total Amount</Typography>
+                  <Typography variant="h4">
+                    {`\u20B9`}
                     {isFreeDelivery()
                       ? calculateTotalMRP()
                       : calculateTotalMRP() + 50}{" "}
@@ -290,15 +323,21 @@ const Cart = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  sx={{ width: "100%", mt: 3 }}
+                  sx={{
+                    width: "100%",
+                    mt: 3,
+                    height: "50px",
+                    backgroundColor: "rgb(255, 63, 108)",
+                  }}
                   onClick={() => setOpenModal(true)}
-                  style={{ backgroundColor: "#E4135c" }}
                 >
-                  Proceed to Checkout
+                  <span style={{ fontWeight: "bold", fontSize: "20px" }}>
+                    Place Order
+                  </span>
                 </Button>
               </Paper>
             </Box>
-          </Box>
+          </Container>
         )}
       </div>
       <div style={{ marginBottom: "20px" }} />
@@ -329,6 +368,8 @@ const Cart = () => {
             onChange={(e) => setAddress(e.target.value)}
             sx={{ mb: 2 }}
           />
+          <br />
+          <br />
           <TextField
             fullWidth
             select
@@ -344,6 +385,8 @@ const Cart = () => {
             <MenuItem value="UPI">UPI</MenuItem>
             <MenuItem value="Cash on Delivery">Cash on Delivery</MenuItem>
           </TextField>
+          <br />
+          <br />
           <Button
             variant="contained"
             color="primary"
@@ -358,7 +401,7 @@ const Cart = () => {
         </Box>
       </Modal>
       {/* Toast for order confirmation */}
-      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
+      <ToastContainer position="top-center" autoClose={3000} />
       <Footer />
     </>
   );
