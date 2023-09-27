@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AppBar, Toolbar, Typography, Box, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const CartNavbar = () => {
   const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // Empty dependency array means this effect will run once on mount
+
   return (
     <AppBar
       position="static"
@@ -13,8 +28,8 @@ const CartNavbar = () => {
         <Toolbar
           style={{
             display: "flex",
-            alignitems: "center",
-            justifycontent: "space-between",
+            alignItems: "center",
+            justifyContent: "space-between",
             gap: "between",
           }}
         >
@@ -28,37 +43,39 @@ const CartNavbar = () => {
             />
           </Box>
 
-          <Box
-            flexGrow={2}
-            sx={{
-              marginLeft: "200px",
-              color: "#535766",
-            }}
-          >
-            <Typography
-              variant="h8"
-              textAlign="center"
-              style={{
-                fontWeight: "bold",
-                fontSize: "12px",
-                letterSpacing: "1px",
+          {windowWidth > 800 && (
+            <Box
+              flexGrow={2}
+              sx={{
+                marginLeft: "200px",
+                color: "#535766",
               }}
             >
-              <span
+              <Typography
+                variant="h8"
+                textAlign="center"
                 style={{
-                  marginRight: "8px",
-                  color: "#20BD99",
-                  borderBottom: "2px solid #20BD99",
+                  fontWeight: "bold",
+                  fontSize: "12px",
+                  letterSpacing: "1px",
                 }}
               >
-                BAG
-              </span>
-              ----------
-              <span style={{ margin: "0 8px" }}>ADDRESS</span>
-              ----------
-              <span style={{ marginLeft: "8px" }}>PAYMENT</span>
-            </Typography>
-          </Box>
+                <span
+                  style={{
+                    marginRight: "8px",
+                    color: "#20BD99",
+                    borderBottom: "2px solid #20BD99",
+                  }}
+                >
+                  BAG
+                </span>
+                ----------
+                <span style={{ margin: "0 8px" }}>ADDRESS</span>
+                ----------
+                <span style={{ marginLeft: "8px" }}>PAYMENT</span>
+              </Typography>
+            </Box>
+          )}
           <Box
             display="flex"
             alignItems="flex-end"
@@ -68,7 +85,7 @@ const CartNavbar = () => {
           >
             <img
               src="https://constant.myntassets.com/checkout/assets/img/sprite-secure.png"
-              class="secureIcon"
+              className="secureIcon"
               width="26"
               height="28"
               style={{ marginBottom: "2px", marginRight: "5px" }}
@@ -83,7 +100,7 @@ const CartNavbar = () => {
                 color: "#535766",
               }}
             >
-              1 0 0 % SECURE
+              100% SECURE
             </Typography>
           </Box>
         </Toolbar>

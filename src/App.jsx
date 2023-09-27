@@ -9,21 +9,27 @@ import FilterOptions from "./components/FilterOptions";
 
 import Cart from "./components/Cart";
 import Home from "./components/Home";
-import { Login } from "./components/Login";
+
 import SlidingImage from "./components/Slider";
 
 import SignInSignupWithLocalStorage from "./components/SignInSignUp";
 import ProductPage from "./components/ProductDetail";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Routes>
         <Route path="/nav" element={<NavBar />} />
         <Route path="/" element={<Home />} />
         <Route path="/pro" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/search" element={<SearchBar />} />
         <Route path="/filter" element={<FilterOptions />} />
         <Route path="/sliding" element={<SlidingImage />} />
