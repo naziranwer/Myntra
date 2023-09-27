@@ -18,6 +18,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
   const theme = useTheme();
@@ -44,6 +45,26 @@ const NavBar = () => {
   };
 
   console.log("drop down status", isDropdownVisible);
+
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
+  const handleProfileIconClick = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+  };
+
+  const handleProfileMenuClose = () => {
+    setIsProfileMenuOpen(false);
+  };
+
+  const isLoggedIn = JSON.parse(localStorage.getItem("user"));
+
+  const handleCartClick = () => {
+    if (isLoggedIn) {
+      navigate("/cart");
+    } else {
+      toast.error("You must be logged in");
+    }
+  };
 
   const menuItems = [
     "Topwear",
@@ -307,7 +328,11 @@ const NavBar = () => {
 
               <div style={{ flexGrow: 1 }} />
 
-              <IconButton color="inherit">
+              <IconButton
+                color="inherit"
+                onClick={handleProfileIconClick}
+                onMouseEnter={handleProfileIconClick}
+              >
                 <PersonOutlineOutlinedIcon
                   style={{
                     color: "#36454F",
@@ -331,6 +356,60 @@ const NavBar = () => {
                   Profile
                 </span>
               </IconButton>
+              {isProfileMenuOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "80px", // Adjust based on your design
+                    right: "2px",
+                    backgroundColor: "white",
+                    border: "1px solid #ccc",
+                    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                    zIndex: 1,
+                    padding: "10px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                  onMouseLeave={handleProfileMenuClose}
+                >
+                  {isLoggedIn ? (
+                    <>
+                      <h3
+                        style={{ color: "black" }}
+                      >{`Hello ${isLoggedIn.data.name}`}</h3>
+                      <Button
+                        color="inherit"
+                        style={{
+                          color: "#36454F",
+                          padding: "5px",
+                          fontWeight: "bold",
+                        }}
+                        onClick={() => {
+                          localStorage.setItem("user", null);
+                          handleProfileMenuClose();
+                        }}
+                      >
+                        Logout
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      color="inherit"
+                      style={{
+                        color: "#36454F",
+                        padding: "5px",
+                        fontWeight: "bold",
+                      }}
+                      onClick={() => {
+                        navigate("/login");
+                        handleProfileMenuClose();
+                      }}
+                    >
+                      Login
+                    </Button>
+                  )}
+                </div>
+              )}
 
               <IconButton color="inherit">
                 <FavoriteBorderOutlinedIcon
@@ -352,7 +431,7 @@ const NavBar = () => {
                   Wishlist
                 </span>
               </IconButton>
-              <IconButton color="inherit" onClick={() => navigate("/cart")}>
+              <IconButton color="inherit" onClick={handleCartClick}>
                 <ShoppingBagOutlinedIcon
                   style={{ color: "#36454F", marginRight: "8px" }}
                 />
