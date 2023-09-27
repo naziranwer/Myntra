@@ -9,6 +9,8 @@ import {
   useMediaQuery,
   useTheme,
   Box,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -64,6 +66,33 @@ const NavBar = () => {
     } else {
       toast.error("You must be logged in");
     }
+  };
+
+  const [isMenuOpen, setIsMenuOpen] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setIsMenuOpen(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setIsMenuOpen(null);
+  };
+
+  const handleMenuItemClick = (action) => {
+    // Perform actions based on the selected menu item
+    if (action === "action1") {
+      // Replace with your desired action
+      localStorage.setItem("user", null);
+      toast.success("You are logged Out Successfully");
+      console.log("Action 1 clicked");
+    } else if (action === "action2") {
+      // Replace with your desired action
+      navigate("/login");
+      console.log("Action 2 clicked");
+    }
+
+    // Close the menu
+    handleMenuClose();
   };
 
   const menuItems = [
@@ -152,7 +181,12 @@ const NavBar = () => {
       >
         {isMobile ? (
           <>
-            <IconButton edge="start" color="inherit" aria-label="menu">
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenuOpen}
+            >
               <MenuIcon style={{ color: "#36454F" }} />
             </IconButton>
             <Typography variant="h6" sx={{ flexGrow: 1, color: "#36454F" }}>
@@ -163,10 +197,7 @@ const NavBar = () => {
                 onClick={() => navigate("/")}
               />
             </Typography>
-            <IconButton color="inherit">
-              <SearchIcon style={{ color: "#36454F" }} />
-            </IconButton>
-            <IconButton color="inherit" onClick={() => navigate("/cart")}>
+            <IconButton color="inherit" onClick={handleCartClick}>
               <ShoppingBagOutlinedIcon
                 style={{ color: "#36454F", marginRight: "8px" }}
               />
@@ -541,6 +572,25 @@ const NavBar = () => {
           </div>
         )}
       </Box>
+      <Menu
+        anchorEl={isMenuOpen}
+        open={Boolean(isMenuOpen)}
+        onClose={handleMenuClose}
+        style={{ top: "4%", left: "0%", padding: "5px" }}
+      >
+        {isLoggedIn ? (
+          <>
+            <h3>{`Hello ${isLoggedIn.data.name}`}</h3>
+            <MenuItem onClick={() => handleMenuItemClick("action1")}>
+              Logout
+            </MenuItem>
+          </>
+        ) : (
+          <MenuItem onClick={() => handleMenuItemClick("action2")}>
+            Login
+          </MenuItem>
+        )}
+      </Menu>
     </AppBar>
   );
 };
