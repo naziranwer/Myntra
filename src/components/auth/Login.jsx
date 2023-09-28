@@ -88,9 +88,8 @@ const LoginPage = () => {
     }
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    openRegisterModal();
+  const handleRegisterationClick = (e) => {
+    navigate("/register");
   };
 
   return (
@@ -140,7 +139,10 @@ const LoginPage = () => {
           >
             Sign In
           </StyledButton>
-          <StyledRegisterLink href="/register" variant="body2">
+          <StyledRegisterLink
+            variant="body2"
+            onClick={handleRegisterationClick}
+          >
             {"Don't have an account? Sign up"}
           </StyledRegisterLink>
         </StyledForm>
