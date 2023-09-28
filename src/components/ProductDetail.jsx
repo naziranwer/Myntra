@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD, DLT } from "../redux/actions/action";
+import { toast } from "react-toastify";
 
 const productImageStyle = {
   maxWidth: "100%",
@@ -45,12 +46,17 @@ const ProductPage = () => {
   console.log("product came as a props", product);
   const cartItems = useSelector((state) => state.cartreducer.carts);
   const isProductInCart = cartItems.some((item) => item.id === product.id);
+  const isLoggedIn = JSON.parse(localStorage.getItem("user"));
   //   const { product.title, product.description, product.price, product.image, category, rating } = product;
 
   const handleAddToCart = (e) => {
     if (isProductInCart) {
       //   dispatch(DLT(e));
-      navigate("/cart");
+      if (isLoggedIn) {
+        navigate("/cart");
+      } else {
+        toast.error("You must be logged in");
+      }
     } else {
       dispatch(ADD(e));
       // You can implement your add to cart logic here

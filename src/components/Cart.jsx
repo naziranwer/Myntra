@@ -386,11 +386,51 @@ const Cart = () => {
             <MenuItem value="Cash on Delivery">Cash on Delivery</MenuItem>
           </TextField>
           <br />
+          {/* <br /> */}
+          {paymentType === "Credit Card" || paymentType === "Debit Card" ? (
+            <>
+              <TextField
+                fullWidth
+                label="Card Number"
+                variant="outlined"
+                sx={{ mb: 2 }}
+              />
+              <br />
+              <br />
+              <TextField
+                fullWidth
+                type="password"
+                label="PIN"
+                variant="outlined"
+                sx={{ mb: 2 }}
+              />
+            </>
+          ) : null}
+          <br />
+          {paymentType === "Net Banking" || paymentType === "UPI" ? (
+            <>
+              <TextField
+                fullWidth
+                label="Name"
+                variant="outlined"
+                sx={{ mb: 2 }}
+              />
+              <br />
+              <br />
+              <TextField
+                fullWidth
+                label={paymentType === "Net Banking" ? "Bank ID" : "UPI ID"}
+                variant="outlined"
+                sx={{ mb: 2 }}
+              />
+            </>
+          ) : null}
           <br />
           <Button
             variant="contained"
             color="primary"
             fullWidth
+            sx={{ mt: 2 }} // Add some margin at the top
             onClick={() => {
               handleCompletePayment();
               setOpenModal(false);
@@ -400,8 +440,9 @@ const Cart = () => {
           </Button>
         </Box>
       </Modal>
+
       {/* Toast for order confirmation */}
-      <ToastContainer position="top-center" autoClose={3000} />
+      {/* <ToastContainer position="top-center" autoClose={3000} /> */}
       <Footer />
     </>
   );

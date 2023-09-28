@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -166,6 +166,20 @@ const NavBar = () => {
     "Luggages & Trolleys",
   ];
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <AppBar
       position="static"
@@ -238,118 +252,120 @@ const NavBar = () => {
               />
             </Typography>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <div
-                style={{ position: "relative" }}
-                // onMouseEnter={handleMouseEnter}
-                // onMouseLeave={handleMouseLeave}
-                // onClick={() => navigate("/filter")}
-              >
-                <Button
-                  color="inherit"
-                  style={{
-                    color: "#36454F",
-                    // marginLeft: "20px",
-                    marginRight: "8px",
-                    marginTop: "14px",
-                    fontWeight: "bold",
-                    padding: "20px 0",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => navigate("/filter")}
+              {windowWidth > 1300 && (
+                <div
+                  style={{ position: "relative" }}
+                  // onMouseEnter={handleMouseEnter}
+                  // onMouseLeave={handleMouseLeave}
+                  // onClick={() => navigate("/filter")}
                 >
-                  Men
-                </Button>
-                <Button
-                  color="inherit"
-                  style={{
-                    color: "#36454F",
-                    marginRight: "8px",
-                    marginTop: "14px",
-                    fontWeight: "bold",
-                    padding: "20px 0",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => navigate("/filter")}
-                >
-                  Women
-                </Button>
-                <Button
-                  color="inherit"
-                  style={{
-                    color: "#36454F",
-                    marginRight: "8px",
-                    marginTop: "14px",
-                    fontWeight: "bold",
-                    padding: "20px 0",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => navigate("/filter")}
-                >
-                  Kids
-                </Button>
-                <Button
-                  color="inherit"
-                  style={{
-                    color: "#36454F",
-                    marginRight: "12px",
-                    marginTop: "14px",
-                    fontWeight: "bold",
-                    padding: "20px 0",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => navigate("/filter")}
-                >
-                  Home & Living
-                </Button>
-                <Button
-                  color="inherit"
-                  style={{
-                    color: "#36454F",
-                    marginRight: "8px",
-                    marginTop: "14px",
-                    fontWeight: "bold",
-                    padding: "20px 0",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => navigate("/filter")}
-                >
-                  Beauty
-                </Button>
-                <Button
-                  color="inherit"
-                  style={{
-                    color: "#36454F",
-                    marginRight: "100px",
-                    marginTop: "14px",
-                    fontWeight: "bold",
-                    padding: "20px 0",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => navigate("/filter")}
-                >
-                  Studio
-                  <span
+                  <Button
+                    color="inherit"
                     style={{
-                      position: "absolute",
-                      top: "3px",
-                      right: "-22px",
-
-                      color: "#EA1E6C",
-
-                      padding: "4px",
-                      fontSize: "8px",
+                      color: "#36454F",
+                      // marginLeft: "20px",
+                      marginRight: "8px",
+                      marginTop: "14px",
+                      fontWeight: "bold",
+                      padding: "20px 0",
                     }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate("/filter")}
                   >
-                    NEW
-                  </span>
-                </Button>
-              </div>
+                    Men
+                  </Button>
+                  <Button
+                    color="inherit"
+                    style={{
+                      color: "#36454F",
+                      marginRight: "8px",
+                      marginTop: "14px",
+                      fontWeight: "bold",
+                      padding: "20px 0",
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate("/filter")}
+                  >
+                    Women
+                  </Button>
+                  <Button
+                    color="inherit"
+                    style={{
+                      color: "#36454F",
+                      marginRight: "8px",
+                      marginTop: "14px",
+                      fontWeight: "bold",
+                      padding: "20px 0",
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate("/filter")}
+                  >
+                    Kids
+                  </Button>
+                  <Button
+                    color="inherit"
+                    style={{
+                      color: "#36454F",
+                      marginRight: "12px",
+                      marginTop: "14px",
+                      fontWeight: "bold",
+                      padding: "20px 0",
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate("/filter")}
+                  >
+                    Home & Living
+                  </Button>
+                  <Button
+                    color="inherit"
+                    style={{
+                      color: "#36454F",
+                      marginRight: "8px",
+                      marginTop: "14px",
+                      fontWeight: "bold",
+                      padding: "20px 0",
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate("/filter")}
+                  >
+                    Beauty
+                  </Button>
+                  <Button
+                    color="inherit"
+                    style={{
+                      color: "#36454F",
+                      marginRight: "100px",
+                      marginTop: "14px",
+                      fontWeight: "bold",
+                      padding: "20px 0",
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate("/filter")}
+                  >
+                    Studio
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: "3px",
+                        right: "-22px",
+
+                        color: "#EA1E6C",
+
+                        padding: "4px",
+                        fontSize: "8px",
+                      }}
+                    >
+                      NEW
+                    </span>
+                  </Button>
+                </div>
+              )}
 
               {/* Add the SearchBar component here */}
               <div style={{ marginRight: "30px", marginTop: "14px" }}>
