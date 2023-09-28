@@ -10,6 +10,7 @@ import {
 import { styled } from "@mui/system";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   marginTop: theme.spacing(8),
@@ -46,6 +47,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -85,8 +87,8 @@ const Register = () => {
     }
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLoginClick = (e) => {
+    navigate("/login");
 
     console.log("login from register called");
   };
@@ -151,7 +153,7 @@ const Register = () => {
           >
             Sign In
           </StyledButton>
-          <StyledRegisterLink href="/login" variant="body2">
+          <StyledRegisterLink variant="body2" onClick={handleLoginClick}>
             {"Already have an account? Login"}
           </StyledRegisterLink>
         </StyledForm>
