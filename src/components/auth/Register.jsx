@@ -8,6 +8,7 @@ import {
   Link,
 } from "@mui/material";
 import { styled } from "@mui/system";
+import NavBar from "../NavBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  padding: 0,
 }));
 
 const StyledForm = styled("form")(({ theme }) => ({
@@ -34,6 +36,11 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const StyledImage = styled("img")(({ theme }) => ({
   width: "100%",
+  height: "auto",
+  objectFit: "cover",
+  display: "block", // Add this to ensure it behaves as a block-level element
+  marginLeft: "auto", // Center the image horizontally
+  marginRight: "auto",
   marginBottom: theme.spacing(2),
 }));
 
@@ -94,71 +101,78 @@ const Register = () => {
   };
 
   return (
-    <StyledContainer component="main" maxWidth="xs">
-      <CssBaseline />
-      <StyledImage
-        src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/1/25/f5e9a029-33c3-4a92-811b-ef7917fe6d441674670210687-offer-banner-300-600x240-code-_-MYNTRA300.jpg"
-        alt="Offer Banner"
-      />
-      <div>
-        <Typography component="h1" variant="h5">
-          Signup
-        </Typography>
-        <StyledForm noValidate>
-          <StyledTextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="User Name"
-            name="username"
-            autoComplete="email"
-            autoFocus
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <StyledTextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <StyledTextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <StyledButton
-            type="button"
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={handleRegister}
-          >
-            Sign In
-          </StyledButton>
-          <StyledRegisterLink variant="body2" onClick={handleLoginClick}>
-            {"Already have an account? Login"}
-          </StyledRegisterLink>
-        </StyledForm>
-      </div>
-    </StyledContainer>
+    <div style={{ backgroundColor: "#ffedf3" }}>
+      <NavBar />
+      <StyledContainer
+        component="main"
+        maxWidth="xs"
+        style={{ backgroundColor: "#fff" }}
+      >
+        <CssBaseline />
+        <StyledImage
+          src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/1/25/f5e9a029-33c3-4a92-811b-ef7917fe6d441674670210687-offer-banner-300-600x240-code-_-MYNTRA300.jpg"
+          alt="Offer Banner"
+        />
+        <div>
+          {/* <Typography component="h1" variant="h5">
+            Signup
+          </Typography> */}
+          <StyledForm noValidate>
+            <StyledTextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="User Name"
+              name="username"
+              autoComplete="email"
+              autoFocus
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <StyledTextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <StyledTextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <StyledButton
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={handleRegister}
+            >
+              Sign Up
+            </StyledButton>
+            <StyledRegisterLink variant="body2" onClick={handleLoginClick}>
+              {"Already have an account? Login"}
+            </StyledRegisterLink>
+          </StyledForm>
+        </div>
+      </StyledContainer>
+    </div>
   );
 };
 

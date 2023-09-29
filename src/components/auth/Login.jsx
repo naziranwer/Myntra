@@ -7,6 +7,7 @@ import {
   Typography,
   Link,
 } from "@mui/material";
+import NavBar from "../NavBar";
 import { styled } from "@mui/system";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -93,61 +94,68 @@ const LoginPage = () => {
   };
 
   return (
-    <StyledContainer component="main" maxWidth="xs">
-      <CssBaseline />
-      <StyledImage
-        src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/1/25/f5e9a029-33c3-4a92-811b-ef7917fe6d441674670210687-offer-banner-300-600x240-code-_-MYNTRA300.jpg"
-        alt="Offer Banner"
-      />
-      <div>
-        <Typography component="h1" variant="h5">
-          Login
-        </Typography>
-        <StyledForm noValidate>
-          <StyledTextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <StyledTextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <StyledButton
-            type="button"
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={handleLogin}
-          >
-            Sign In
-          </StyledButton>
-          <StyledRegisterLink
-            variant="body2"
-            onClick={handleRegisterationClick}
-          >
-            {"Don't have an account? Sign up"}
-          </StyledRegisterLink>
-        </StyledForm>
-      </div>
-    </StyledContainer>
+    <div style={{ backgroundColor: "#ffedf3" }}>
+      <NavBar />
+      <StyledContainer
+        component="main"
+        maxWidth="xs"
+        style={{ backgroundColor: "#fff" }}
+      >
+        <CssBaseline />
+        <StyledImage
+          src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/1/25/f5e9a029-33c3-4a92-811b-ef7917fe6d441674670210687-offer-banner-300-600x240-code-_-MYNTRA300.jpg"
+          alt="Offer Banner"
+        />
+        <div>
+          <Typography component="h1" variant="h5">
+            Login
+          </Typography>
+          <StyledForm noValidate>
+            <StyledTextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <StyledTextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <StyledButton
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={handleLogin}
+            >
+              Sign In
+            </StyledButton>
+            <StyledRegisterLink
+              variant="body2"
+              onClick={handleRegisterationClick}
+            >
+              {"Don't have an account? Sign up"}
+            </StyledRegisterLink>
+          </StyledForm>
+        </div>
+      </StyledContainer>
+    </div>
   );
 };
 

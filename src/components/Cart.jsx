@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DLT, ADD, REMOVE } from "../redux/actions/action";
-
+import PaymentForm from "./Payment";
 import {
   Grid,
   Paper,
@@ -342,7 +342,7 @@ const Cart = () => {
       </div>
       <div style={{ marginBottom: "20px" }} />
       {/* Payment Modal */}
-      <Modal
+      {/* <Modal
         open={openModal}
         onClose={() => setOpenModal(false)}
         aria-labelledby="modal-title"
@@ -369,8 +369,8 @@ const Cart = () => {
             sx={{ mb: 2 }}
           />
           <br />
-          <br />
-          <TextField
+          <br /> */}
+      {/* <TextField
             fullWidth
             select
             label="Payment Type"
@@ -385,9 +385,9 @@ const Cart = () => {
             <MenuItem value="UPI">UPI</MenuItem>
             <MenuItem value="Cash on Delivery">Cash on Delivery</MenuItem>
           </TextField>
-          <br />
-          {/* <br /> */}
-          {paymentType === "Credit Card" || paymentType === "Debit Card" ? (
+          <br /> */}
+      {/* <br /> */}
+      {/* {paymentType === "Credit Card" || paymentType === "Debit Card" ? (
             <>
               <TextField
                 fullWidth
@@ -406,8 +406,8 @@ const Cart = () => {
               />
             </>
           ) : null}
-          <br />
-          {paymentType === "Net Banking" || paymentType === "UPI" ? (
+          <br /> */}
+      {/* {paymentType === "Net Banking" || paymentType === "UPI" ? (
             <>
               <TextField
                 fullWidth
@@ -424,9 +424,9 @@ const Cart = () => {
                 sx={{ mb: 2 }}
               />
             </>
-          ) : null}
-          <br />
-          <Button
+          ) : null} */}
+      <br />
+      {/* <Button
             variant="contained"
             color="primary"
             fullWidth
@@ -437,8 +437,20 @@ const Cart = () => {
             }}
           >
             Complete Payment
-          </Button>
-        </Box>
+          </Button> */}
+      {/* </Box>
+      </Modal> */}
+
+      <Modal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <PaymentForm
+          onClose={() => setOpenModal(false)}
+          onCompletePayment={handleCompletePayment}
+        />
       </Modal>
 
       {/* Toast for order confirmation */}
