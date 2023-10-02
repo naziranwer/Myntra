@@ -80,7 +80,7 @@ const ProductPage = () => {
     justifyContent: "center",
     alignItems: "center",
     cursor: "pointer",
-    transition: "border-color 0.3s",
+    transition: "border-color 0.3s, background-color 0.3s",
   };
 
   const handleImageHover = (e) => {
@@ -142,7 +142,14 @@ const ProductPage = () => {
               </p>
               <p style={{ fontWeight: "bold" }}>SELECT SIZE</p>
               <div style={{ display: "flex", gap: "5px" }}>
-                <div style={circleButtonStyles}>S</div>
+                <div
+                  style={{
+                    ...circleButtonStyles,
+                    ":hover": { backgroundColor: "#FF3E6C" },
+                  }}
+                >
+                  S
+                </div>
                 <div style={circleButtonStyles}>M</div>
                 <div style={circleButtonStyles}>L</div>
                 <div style={circleButtonStyles}>XL</div>

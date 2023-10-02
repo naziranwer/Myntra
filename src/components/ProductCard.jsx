@@ -44,6 +44,7 @@ const ProductCard = ({ products }) => {
               display: "flex",
               justifyContent: "center",
               marginBottom: "50px", // Adjust margin as needed
+              cursor: "pointer",
               // marginTop: "10px",
             }}
             onMouseEnter={() => handleMouseEnter(product.id)}

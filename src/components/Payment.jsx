@@ -9,13 +9,13 @@ import {
   TextField,
   Button,
   FormControl,
+  CircularProgress,
   InputLabel,
   Select,
   MenuItem,
 } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { useNavigate } from "react-router";
 
 const containerStyle = {
@@ -32,7 +32,25 @@ const imageStyle = {
   padding: "0px",
 };
 
-const PaymentForm = ({ onClose, onCompletePayment }) => {
+const LoadingOverlay = () => (
+  <div
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "rgba(255, 255, 255, 0.8)", // Optional: Add a semi-transparent background
+    }}
+  >
+    <CircularProgress size={50} color="secondary" />
+  </div>
+);
+
+const PaymentForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [cardNumber, setCardNumber] = useState("");
   const [holderName, setHolderName] = useState("");
@@ -40,34 +58,48 @@ const PaymentForm = ({ onClose, onCompletePayment }) => {
   const [cvv, setCvv] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const checkCardDetails = () => {
     // Your card payment logic here
     if (cardNumber && holderName && expiry && cvv) {
-      toast.success("Payment Successful you will be redirected to home page");
+      // toast.success("Payment Successful you will be redirected to home page");
+      setLoading(true);
       setTimeout(() => {
-        navigate("/");
-      }, 2000);
+        toast.success("Payment Successful you will be redirected to home page");
+        setLoading(false);
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
+      }, 10000);
     }
   };
 
   const checkWallet = () => {
     // Your wallet payment logic here
     if (otp && phoneNumber) {
-      toast.success("Payment Successful you will be redirected to home page");
+      setLoading(true);
+
       setTimeout(() => {
-        navigate("/");
-      }, 3000);
+        toast.success("Payment Successful you will be redirected to home page");
+        setLoading(false);
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
+      }, 10000);
     }
   };
 
   return (
-    <Container style={{ marginTop: "10%" }}>
+    <Container style={{ margin: "10%" }}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} style={{ padding: "20px" }}>
+          <Paper
+            elevation={3}
+            style={{ padding: "20px", position: "relative" }}
+          >
             <FormControl component="fieldset">
               <h5>
                 <strong>Select Payment Method</strong>
@@ -99,7 +131,10 @@ const PaymentForm = ({ onClose, onCompletePayment }) => {
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} style={{ padding: "20px" }}>
+          <Paper
+            elevation={3}
+            style={{ padding: "20px", position: "relative" }}
+          >
             {paymentMethod === "card" && (
               <form>
                 <TextField
@@ -139,14 +174,16 @@ const PaymentForm = ({ onClose, onCompletePayment }) => {
                   inputProps={{ minLength: 3, maxLength: 3 }}
                   onChange={(e) => setCvv(e.target.value)}
                 />
+                {loading && <LoadingOverlay />}
                 <Button
                   variant="contained"
                   color="secondary"
                   fullWidth
                   onClick={checkCardDetails}
                   style={{ marginTop: "20px" }}
+                  disabled={loading}
                 >
-                  Pay
+                  {loading ? "Processing" : "Pay"}
                 </Button>
               </form>
             )}
@@ -168,14 +205,16 @@ const PaymentForm = ({ onClose, onCompletePayment }) => {
                   inputProps={{ min: 1000, max: 9999 }}
                   onChange={(e) => setOtp(e.target.value)}
                 />
+                {loading && <LoadingOverlay />}
                 <Button
                   variant="contained"
                   color="secondary"
                   fullWidth
                   onClick={checkWallet}
                   style={{ marginTop: "20px" }}
+                  disabled={loading}
                 >
-                  Pay
+                  {loading ? "Processing" : "Pay"}
                 </Button>
               </form>
             )}

@@ -143,12 +143,14 @@ const LoginPage = () => {
               variant="contained"
               color="primary"
               onClick={handleLogin}
+              style={{ backgroundColor: "#FF3E6C", fontWeight: "bold" }}
             >
               Sign In
             </StyledButton>
             <StyledRegisterLink
               variant="body2"
               onClick={handleRegisterationClick}
+              style={{ color: "#FF3E6C", cursor: "pointer" }}
             >
               {"Don't have an account? Sign up"}
             </StyledRegisterLink>

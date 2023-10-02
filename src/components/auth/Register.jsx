@@ -58,6 +58,12 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (!name || !email || !password) {
+      toast.error("All fields must be filled.");
+      return;
+    }
+
     console.log("Registeration completed");
     try {
       const response = await fetch(
@@ -83,11 +89,12 @@ const Register = () => {
         // localStorage.setItem("user", data);
         // Redirect to the login page
         toast.success("Registered Successfully. Now Please Login");
+        navigate("/login");
         // window.location.href = '/login';
       } else {
         // Handle registration errors
         console.error("Registration failed");
-        toast.error("Already Registered.Please Login");
+        toast.error("Wrong Input Format or Already Registered");
       }
     } catch (error) {
       console.error("Error during registration", error);
@@ -163,10 +170,15 @@ const Register = () => {
               variant="contained"
               color="primary"
               onClick={handleRegister}
+              style={{ backgroundColor: "#FF3E6C", fontWeight: "bold" }}
             >
               Sign Up
             </StyledButton>
-            <StyledRegisterLink variant="body2" onClick={handleLoginClick}>
+            <StyledRegisterLink
+              variant="body2"
+              onClick={handleLoginClick}
+              style={{ color: "#FF3E6C", cursor: "pointer" }}
+            >
               {"Already have an account? Login"}
             </StyledRegisterLink>
           </StyledForm>
