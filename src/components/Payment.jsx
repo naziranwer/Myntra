@@ -93,7 +93,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <Container style={{ margin: "10%" }}>
+    <Container style={{ marginTop: "10%" }}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Paper

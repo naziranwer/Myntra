@@ -19,6 +19,7 @@ import Register from "./components/auth/Register";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./components/NotFound";
+import PaymentForm from "./components/Payment";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
         <Route path="/search" element={<SearchBar />} />
         <Route path="/filter" element={<FilterOptions />} />
         <Route path="/sliding" element={<SlidingImage />} />
-        <Route path="/slid" element={<SignInSignupWithLocalStorage />} />
+        <Route path="/payment" element={<PaymentForm />} />
       </Routes>
     </BrowserRouter>
   );

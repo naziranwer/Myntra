@@ -523,7 +523,7 @@ const NavBar = () => {
             onMouseLeave={handleDropdownMouseLeave}
             style={{
               position: "absolute",
-              top: "13%",
+              top: "8.5%",
               left: "10%",
               width: "80%",
               height: "70%",
