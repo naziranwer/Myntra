@@ -522,8 +522,8 @@ const NavBar = () => {
             onMouseEnter={handleDropdownMouseEnter}
             onMouseLeave={handleDropdownMouseLeave}
             style={{
-              position: "absolute",
-              top: "8.5%",
+              position: "fixed",
+              // top: "13%",
               left: "10%",
               width: "80%",
               height: "70%",

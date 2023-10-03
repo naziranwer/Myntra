@@ -113,14 +113,14 @@ const Register = () => {
       <StyledContainer
         component="main"
         maxWidth="xs"
-        style={{ backgroundColor: "#fff" }}
+        style={{ backgroundColor: "#fff", padding: 0 }}
       >
         <CssBaseline />
         <StyledImage
           src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/1/25/f5e9a029-33c3-4a92-811b-ef7917fe6d441674670210687-offer-banner-300-600x240-code-_-MYNTRA300.jpg"
           alt="Offer Banner"
         />
-        <div>
+        <div style={{ padding: "20px" }}>
           {/* <Typography component="h1" variant="h5">
             Signup
           </Typography> */}
